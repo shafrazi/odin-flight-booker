@@ -1,0 +1,11 @@
+<%= form_with(local: true, method: "get") do |f| %>
+  <div class="form-group">
+    <%= f.label :from_airport, "From : " %>
+    <%= f.select :from_airport, options_for_select(@airport_options), class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :to_airport, "To : " %>
+    <%= f.select :to_airport, options_for_select(@airport_options), class: "form-control" %>
+  </div>
+  <%= f.submit "Search Flights", class: "btn btn-primary" %>
+<% end %>

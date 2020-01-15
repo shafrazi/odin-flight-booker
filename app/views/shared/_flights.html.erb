@@ -1,0 +1,25 @@
+<% if @search_results.empty? %>
+  <p>No flights found</p>
+<% else %>
+  <div class="flight-list-form">
+    Search results for flights from <%= @from_airport.name %> to <%= @to_airport.name %>
+    <br>
+    <br>
+    <%= form_with(url: "/bookings/new", local: true, method: "get") do |f| %>
+      <ul class="flight-list">
+        <% @search_results.each_with_index do |flight, index| %>
+          <li>
+            <%= f.radio_button :flight, flight.id %>
+            <b><%= f.label :flight, "Flight No: #{index + 1}" %></b>
+            <div class="flight-details">
+              <p><b>Flight Date : </b> <%= flight.start_date %></p>
+              <p><b>Flight Duration : </b> about <%= flight.duration %> minutes</p>
+            </div>
+            <hr>
+          </li>
+        <% end %>
+      </ul>
+      <%= f.submit "Submit", class: "btn btn-primary"%>
+    <% end %>
+  </div>
+<% end %>
