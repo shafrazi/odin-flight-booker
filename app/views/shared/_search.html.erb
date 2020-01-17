@@ -7,5 +7,9 @@
     <%= f.label :to_airport, "To : " %>
     <%= f.select :to_airport, options_for_select(@airport_options), class: "form-control" %>
   </div>
+  <div class="form-group">
+    <%= f.label :passengers_num, "No. of passengers : " %>
+    <%= f.select :passengers_num, options_for_select(@passenger_options), class: "form-control" %>
+  </div>
   <%= f.submit "Search Flights", class: "btn btn-primary" %>
 <% end %>

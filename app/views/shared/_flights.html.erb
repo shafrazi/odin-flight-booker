@@ -6,6 +6,7 @@
     <br>
     <br>
     <%= form_with(url: "/bookings/new", local: true, method: "get") do |f| %>
+      <%= f.hidden_field :passengers_num, value: @passengers_num  %>
       <ul class="flight-list">
         <% @search_results.each_with_index do |flight, index| %>
           <li>
