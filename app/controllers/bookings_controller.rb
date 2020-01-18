@@ -13,6 +13,8 @@ class BookingsController < ApplicationController
     if @booking.save
       flash[:success] = "Booking created successfully!"
       redirect_to @booking
+    else
+      redirect_to root_path
     end
   end
 
