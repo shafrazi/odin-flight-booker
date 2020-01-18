@@ -14,6 +14,7 @@ class BookingsController < ApplicationController
       flash[:success] = "Booking created successfully!"
       redirect_to @booking
     else
+      flash[:danger] = "Invalid booking details. Please retry!"
       redirect_to root_path
     end
   end
