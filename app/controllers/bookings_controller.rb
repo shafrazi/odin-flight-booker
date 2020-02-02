@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookingsController < ApplicationController
   def new
     @flight = Flight.find(params[:flight])
@@ -11,10 +13,14 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     if @booking.save
-      flash[:success] = "Booking created successfully!"
+      passengers = @booking.passengers
+      flash[:success] = 'Booking created successfully!'
+      passengers.each do |passenger|
+        passenger.send_thank_you_mail(@booking)
+      end
       redirect_to @booking
     else
-      flash[:danger] = "Invalid booking details. Please retry!"
+      flash[:danger] = 'Invalid booking details. Please retry!'
       redirect_to root_path
     end
   end
@@ -26,6 +32,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:flight_id, { passengers_attributes: [:name, :email, :id, :booking_id] })
+    params.require(:booking).permit(:flight_id, passengers_attributes: %i[name email id booking_id])
   end
 end

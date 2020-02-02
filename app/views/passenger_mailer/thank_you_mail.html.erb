@@ -1,0 +1,12 @@
+<h1>Odin Flight Booker</h1>
+<p>
+  Hello, <%= @passenger.name %>!
+</p>
+<p>
+  Thank you for your booking at the Odin Flight Booker. Your booking details are :
+</p>
+<ul>
+  <li>Origin : <%= airport_name(@booking.flight.from_airport_id) %></li>
+  <li>Destination : <%= airport_name(@booking.flight.to_airport_id) %></li>
+  <li>Date : </b><%= @booking.flight.start_date %></li>
+</ul>
