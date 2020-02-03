@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -6,11 +8,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require "csv"
+require 'csv'
 
 # seed airports
 
-airport_data = CSV.parse(File.read("us-airports.csv"), headers: true)
+airport_data = CSV.parse(File.read('us-airports.csv'), headers: true)
 airport_data.delete(0)
 
 codes_arr = []
@@ -32,9 +34,7 @@ end
 def assign_airports(airport_count)
   from_airport_id = rand(airport_count)
   to_airport_id = rand(airport_count)
-  if from_airport_id == to_airport_id
-    to_airport_id += 1
-  end
+  to_airport_id += 1 if from_airport_id == to_airport_id
   [from_airport_id, to_airport_id]
 end
 
